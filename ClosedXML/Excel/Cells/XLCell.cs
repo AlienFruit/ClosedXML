@@ -298,6 +298,16 @@ namespace ClosedXML.Excel
                 }
                 parsed = true;
             }
+            else if(value is ExternalLinkValue elv)
+            {
+                elv.Valildate();
+                parsedValue = string.IsNullOrEmpty(elv.DisplayValue) ? elv.Uri.ToString() : elv.DisplayValue;
+                parsed = true;
+                _dataType = XLDataType.Text;
+
+                if(elv.Uri != null)
+                    Hyperlink = new XLHyperlink(elv.Uri, elv.Tooltip);
+            }
             else
             {
                 parsed = false;
@@ -1303,12 +1313,13 @@ namespace ClosedXML.Excel
 
             set
             {
-                if (Worksheet.Hyperlinks.Any(hl => Address.Equals(hl.Cell.Address)))
-                    Worksheet.Hyperlinks.Delete(Address);
+                //if (Worksheet.Hyperlinks.Any(hl => Address.Equals(hl.Cell.Address)))
+                //    Worksheet.Hyperlinks.Delete(Address);
 
                 _hyperlink = value;
 
-                if (_hyperlink == null) return;
+                if (_hyperlink == null)
+                    return;
 
                 _hyperlink.Worksheet = Worksheet;
                 _hyperlink.Cell = this;
