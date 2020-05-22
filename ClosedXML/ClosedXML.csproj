@@ -4,14 +4,16 @@
     <TargetFrameworks>netstandard2.0;net40;net46</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
     <AssemblyName>ClosedXML</AssemblyName>
-    <PackageId>ClosedXML</PackageId>
-    <Version>0.95.2</Version>
-    <Authors>Francois Botha, Aleksei Pankratev, Manuel de Leon, Amir Ghezelbash</Authors>
+    <PackageId>AlienFruit.ClosedXML</PackageId>
+    <Version>0.95.3</Version>
+    <Authors>Francois Botha, Aleksei Pankratev, Manuel de Leon, Amir Ghezelbash, Alexander Prockopovich</Authors>
     <Owners>Francois Botha, Aleksei Pankratev</Owners>
-    <Company />
+    <Company>Francois Botha, Aleksei Pankratev, Manuel de Leon, Amir Ghezelbash, Alexander Prockopovich</Company>
     <Product>ClosedXML</Product>
     <PackageReleaseNotes>See https://github.com/ClosedXML/ClosedXML/releases/tag/$(productVersion)</PackageReleaseNotes>
-    <Description>ClosedXML is a .NET library for reading, manipulating and writing Excel 2007+ (.xlsx, .xlsm) files. It aims to provide an intuitive and user-friendly interface to dealing with the underlying OpenXML API.</Description>
+    <Description>This library forked from https://github.com/ClosedXML/ClosedXML
+This fork provides more convenient hyperlinks creating.
+ClosedXML is a .NET library for reading, manipulating and writing Excel 2007+ (.xlsx, .xlsm) files. It aims to provide an intuitive and user-friendly interface to dealing with the underlying OpenXML API.</Description>
     <Copyright>MIT</Copyright>
     <PackageProjectUrl>https://github.com/ClosedXML/ClosedXML</PackageProjectUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -71,6 +73,10 @@
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.7.2" />
     <PackageReference Include="ExcelNumberFormat" Version="1.0.10" />
+    <PackageReference Include="GitVersionTask" Version="5.3.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
 
     <!-- SourceLink , see https://github.com/ctaggart/SourceLink -->
     <PackageReference Include="SourceLink.Copy.PdbFiles" Version="2.8.3" PrivateAssets="All" />
