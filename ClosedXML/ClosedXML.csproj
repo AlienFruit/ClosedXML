@@ -17,12 +17,14 @@ ClosedXML is a .NET library for reading, manipulating and writing Excel 2007+ (.
     <Copyright>MIT</Copyright>
     <PackageProjectUrl>https://github.com/AlienFruit/ClosedXML</PackageProjectUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/ClosedXML/ClosedXML/develop/resources/logo/nuget-logo.png</PackageIconUrl>
+    <PackageIconUrl></PackageIconUrl>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);NU1605;CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Configurations>Debug;Release;Release.Signed</Configurations>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/AlienFruit/ClosedXML</RepositoryUrl>
+    <PackageIcon>Artboard 1.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release.Signed'">
@@ -68,6 +70,10 @@ ClosedXML is a .NET library for reading, manipulating and writing Excel 2007+ (.
 
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Include="L:\Visual Studio 2010 project\C#\NET.Standart\AlienFruit\Design\Icons2\256w\Artboard 1.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
