@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -10,7 +11,7 @@ namespace ClosedXML.Excel
     internal class XLWorksheets : IXLWorksheets, IEnumerable<XLWorksheet>
     {
         private readonly XLWorkbook _workbook;
-        private readonly Dictionary<String, XLWorksheet> _worksheets = new Dictionary<String, XLWorksheet>(StringComparer.OrdinalIgnoreCase);
+        private readonly ConcurrentDictionary<string, XLWorksheet> _worksheets = new ConcurrentDictionary<string, XLWorksheet>(StringComparer.OrdinalIgnoreCase);
         internal ICollection<String> Deleted { get; private set; }
 
         #region Constructor
@@ -40,7 +41,7 @@ namespace ClosedXML.Excel
             get { return _worksheets.Count; }
         }
 
-        public Boolean Contains(String sheetName)
+        public Boolean Contains(string sheetName)
         {
             return _worksheets.ContainsKey(sheetName);
         }
@@ -111,10 +112,8 @@ namespace ClosedXML.Excel
 
         private void Add(String sheetName, XLWorksheet sheet)
         {
-            if (_worksheets.ContainsKey(sheetName))
+            if(!_worksheets.TryAdd(sheetName, sheet))
                 throw new ArgumentException(String.Format("A worksheet with the same name ({0}) has already been added.", sheetName), nameof(sheetName));
-
-            _worksheets.Add(sheetName, sheet);
         }
 
         public void Delete(String sheetName)
@@ -136,7 +135,9 @@ namespace ClosedXML.Excel
             if (!String.IsNullOrWhiteSpace(ws.RelId) && !Deleted.Contains(ws.RelId))
                 Deleted.Add(ws.RelId);
 
-            _worksheets.RemoveAll(w => w.Position == position);
+            _worksheets.Where(x => x.Value.Position == position)
+                .ForEach(x => _worksheets.TryRemove(x.Key, out var value));
+
             _worksheets.Values.Where(w => w.Position > position).ForEach(w => w._position -= 1);
             _workbook.UnsupportedSheets.Where(w => w.Position > position).ForEach(w => w.Position -= 1);
             _workbook.InvalidateFormulas();
@@ -182,7 +183,7 @@ namespace ClosedXML.Excel
                 && _worksheets.ContainsKey(newSheetName))
                 throw new ArgumentException(String.Format("A worksheet with the same name ({0}) has already been added.", newSheetName), nameof(newSheetName));
 
-            _worksheets.Remove(oldSheetName);
+            _worksheets.TryRemove(oldSheetName, out var value);
             Add(newSheetName, ws);
         }
 
