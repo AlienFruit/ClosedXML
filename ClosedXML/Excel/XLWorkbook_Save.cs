@@ -5705,8 +5705,10 @@ namespace ClosedXML.Excel
                             Display = hl.Cell.GetFormattedString()
                         };
                     }
-                    if (!String.IsNullOrWhiteSpace(hl.Tooltip))
+
+                    if (hl.Tooltip != null)
                         hyperlink.Tooltip = hl.Tooltip;
+
                     hyperlinks.AppendChild(hyperlink);
                 }
             }

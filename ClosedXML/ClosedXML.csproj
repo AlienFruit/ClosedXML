@@ -10,12 +10,12 @@
     <Owners>Francois Botha, Aleksei Pankratev</Owners>
     <Company>Francois Botha, Aleksei Pankratev, Manuel de Leon, Amir Ghezelbash, Alexander Prockopovich</Company>
     <Product>ClosedXML</Product>
-    <PackageReleaseNotes>See https://github.com/ClosedXML/ClosedXML/releases/tag/$(productVersion)</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <Description>This library forked from https://github.com/ClosedXML/ClosedXML
 This fork provides more convenient hyperlinks creating.
 ClosedXML is a .NET library for reading, manipulating and writing Excel 2007+ (.xlsx, .xlsm) files. It aims to provide an intuitive and user-friendly interface to dealing with the underlying OpenXML API.</Description>
     <Copyright>MIT</Copyright>
-    <PackageProjectUrl>https://github.com/ClosedXML/ClosedXML</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/AlienFruit/ClosedXML</PackageProjectUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/ClosedXML/ClosedXML/develop/resources/logo/nuget-logo.png</PackageIconUrl>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>

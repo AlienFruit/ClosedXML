@@ -64,25 +64,17 @@ namespace ClosedXML.Excel
                 return GetNext(RelType.Workbook);
             }
 
-            public String GetNext(RelType relType)
+            public string GetNext(RelType relType)
             {
-                if (!_relIds.TryGetValue(relType, out List<String> list))
+                if (!_relIds.TryGetValue(relType, out List<string> list))
                 {
-                    list = new List<String>();
+                    list = new List<string>();
                     _relIds.Add(relType, list);
                 }
 
-                Int32 id = list.Count + 1;
-                while (true)
-                {
-                    String relId = String.Concat("rId", id);
-                    if (!list.Contains(relId))
-                    {
-                        list.Add(relId);
-                        return relId;
-                    }
-                    id++;
-                }
+                var newId = string.Concat("rId", (list.Count + 1).ToString());
+                list.Add(newId);
+                return newId;
             }
 
             public void Reset(RelType relType)
