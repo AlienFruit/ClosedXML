@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ClosedXML.Excel
 {
@@ -144,30 +145,37 @@ namespace ClosedXML.Excel
             }
         }
 
-        public IXLColumn AdjustToContents()
-        {
-            return AdjustToContents(1);
-        }
+        public IXLColumn AdjustToContents() => AdjustToContents(1);
 
         public IXLColumn AdjustToContents(Int32 startRow)
-        {
-            return AdjustToContents(startRow, XLHelper.MaxRowNumber);
-        }
+            => AdjustToContents(startRow, XLHelper.MaxRowNumber);
 
         public IXLColumn AdjustToContents(Int32 startRow, Int32 endRow)
-        {
-            return AdjustToContents(startRow, endRow, 0, Double.MaxValue);
-        }
+            => AdjustToContents(startRow, endRow, 0, Double.MaxValue);
 
         public IXLColumn AdjustToContents(Double minWidth, Double maxWidth)
-        {
-            return AdjustToContents(1, XLHelper.MaxRowNumber, minWidth, maxWidth);
-        }
+            => AdjustToContents(1, XLHelper.MaxRowNumber, minWidth, maxWidth);
 
         public IXLColumn AdjustToContents(Int32 startRow, Double minWidth, Double maxWidth)
-        {
-            return AdjustToContents(startRow, XLHelper.MaxRowNumber, minWidth, maxWidth);
-        }
+            => AdjustToContents(startRow, XLHelper.MaxRowNumber, minWidth, maxWidth);
+
+        public Task AdjustToContentsAsync()
+            => Task.Run(() => AdjustToContents(1));
+
+        public Task AdjustToContentsAsync(Int32 startRow)
+            => Task.Run(() => AdjustToContents(startRow, XLHelper.MaxRowNumber));
+
+        public Task AdjustToContentsAsync(Int32 startRow, Int32 endRow)
+            => Task.Run(() => AdjustToContents(startRow, endRow, 0, Double.MaxValue));
+
+        public Task AdjustToContentsAsync(Double minWidth, Double maxWidth)
+            => Task.Run(() => AdjustToContents(1, XLHelper.MaxRowNumber, minWidth, maxWidth));
+
+        public Task AdjustToContentsAsync(Int32 startRow, Double minWidth, Double maxWidth)
+            => Task.Run(() => AdjustToContents(startRow, XLHelper.MaxRowNumber, minWidth, maxWidth));
+
+        public Task AdjustToContentsAsync(Int32 startRow, Int32 endRow, Double minWidth, Double maxWidth)
+            => Task.Run(() => AdjustToContents(startRow, endRow, minWidth, maxWidth));
 
         public IXLColumn AdjustToContents(Int32 startRow, Int32 endRow, Double minWidth, Double maxWidth)
         {

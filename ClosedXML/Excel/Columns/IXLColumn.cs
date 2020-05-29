@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace ClosedXML.Excel
 {
@@ -84,6 +85,20 @@ namespace ClosedXML.Excel
         IXLColumn AdjustToContents(Int32 startRow, Double minWidth, Double maxWidth);
 
         IXLColumn AdjustToContents(Int32 startRow, Int32 endRow, Double minWidth, Double maxWidth);
+
+        /// <summary>
+        /// Adjusts the width of the column based on its contents, starting from the startRow and ending at endRow.
+        /// </summary>
+        /// <param name="startRow">The row to start calculating the column width.</param>
+        /// <param name="endRow">The row to end calculating the column width.</param>
+        Task AdjustToContentsAsync(Int32 startRow, Int32 endRow);
+
+        Task AdjustToContentsAsync(Double minWidth, Double maxWidth);
+
+        Task AdjustToContentsAsync(Int32 startRow, Double minWidth, Double maxWidth);
+
+        Task AdjustToContentsAsync(Int32 startRow, Int32 endRow, Double minWidth, Double maxWidth);
+
 
         /// <summary>
         /// Hides this column.
