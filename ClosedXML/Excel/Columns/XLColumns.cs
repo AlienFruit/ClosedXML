@@ -5,6 +5,7 @@ using System.Linq;
 namespace ClosedXML.Excel
 {
     using System.Collections;
+    using System.Threading.Tasks;
 
     internal class XLColumns : XLStylizedBase, IXLColumns, IXLStylized
     {
@@ -79,37 +80,37 @@ namespace ClosedXML.Excel
 
         public IXLColumns AdjustToContents()
         {
-            _columns.ForEach(c => c.AdjustToContents());
+            Task.WaitAll(_columns.Select(c => c.AdjustToContentsAsync()).ToArray());
             return this;
         }
 
         public IXLColumns AdjustToContents(Int32 startRow)
         {
-            _columns.ForEach(c => c.AdjustToContents(startRow));
+            Task.WaitAll(_columns.Select(c => c.AdjustToContentsAsync(startRow)).ToArray());
             return this;
         }
 
         public IXLColumns AdjustToContents(Int32 startRow, Int32 endRow)
         {
-            _columns.ForEach(c => c.AdjustToContents(startRow, endRow));
+            Task.WaitAll(_columns.Select(c => c.AdjustToContentsAsync(startRow, endRow)).ToArray());
             return this;
         }
 
         public IXLColumns AdjustToContents(Double minWidth, Double maxWidth)
         {
-            _columns.ForEach(c => c.AdjustToContents(minWidth, maxWidth));
+            Task.WaitAll(_columns.Select(c => c.AdjustToContentsAsync(minWidth, maxWidth)).ToArray());
             return this;
         }
 
         public IXLColumns AdjustToContents(Int32 startRow, Double minWidth, Double maxWidth)
         {
-            _columns.ForEach(c => c.AdjustToContents(startRow, minWidth, maxWidth));
+            Task.WaitAll(_columns.Select(c => c.AdjustToContentsAsync(startRow, minWidth, maxWidth)).ToArray());
             return this;
         }
 
         public IXLColumns AdjustToContents(Int32 startRow, Int32 endRow, Double minWidth, Double maxWidth)
         {
-            _columns.ForEach(c => c.AdjustToContents(startRow, endRow, minWidth, maxWidth));
+            Task.WaitAll(_columns.Select(c => c.AdjustToContentsAsync(startRow, endRow, minWidth, maxWidth)).ToArray());
             return this;
         }
 
